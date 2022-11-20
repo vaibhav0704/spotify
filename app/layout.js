@@ -1,10 +1,19 @@
-import '../styles/globals.css'
+"use client"
 
-export default function RootLayout({ children }) {
+import '../styles/globals.css'
+import { SessionProvider } from "next-auth/react"
+
+export default function RootLayout({ children, session }) {
   return (
     <html>
       <head />
-      <body>{children}</body>
+      <body>
+        <SessionProvider session={session} refetchOnWindowFocus={false}>
+          <>
+            {children}
+          </>
+        </SessionProvider>
+      </body>
     </html>
   )
 }
